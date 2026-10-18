@@ -174,7 +174,7 @@ const defaultState: AppState = {
   },
   provider: "chatgpt",
   activeProviders: ["chatgpt"],
-  country: "US",
+  country: "IL",
   prompt: "What are the best tools in your category in 2026? Include sources.",
   customPrompts: [
     {

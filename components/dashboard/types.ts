@@ -109,6 +109,7 @@ export const COUNTRIES: { code: string; label: string }[] = [
   { code: "IN", label: "India" },
   { code: "JP", label: "Japan" },
   { code: "MX", label: "Mexico" },
+  { code: "IL", label: "Israel" },
 ];
 
 export const COUNTRY_LABELS: Record<string, string> = Object.fromEntries(
