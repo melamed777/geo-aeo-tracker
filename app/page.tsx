@@ -10,13 +10,21 @@ import { SovereignDashboard } from "@/components/sovereign-dashboard";
 // zero-config Vercel deploy lands on a working dashboard, and adding the key
 // is what switches it to live data. BRIGHT_DATA_KEY is read here in a server
 // component, so it is never shipped to the browser.
-const explicitDemo =
-  (process.env.NEXT_PUBLIC_DEMO_ONLY ?? "").trim().toLowerCase() === "true";
-const hasBrightDataKey = Boolean((process.env.BRIGHT_DATA_KEY ?? "").trim());
-
-const isDemoOnly = explicitDemo || !hasBrightDataKey;
+//
+// `dynamic = "force-dynamic"` is required so the key check reads the RUNTIME
+// environment. Without it the "/" route is statically prerendered at build
+// time and permanently bakes in the "no-key" demo banner — a problem for
+// Docker (and any runtime-secret deploy) where BRIGHT_DATA_KEY is supplied
+// via `env_file`/`-e` at run time, not baked into the build.
+export const dynamic = "force-dynamic";
 
 export default function Home() {
+  const explicitDemo =
+    (process.env.NEXT_PUBLIC_DEMO_ONLY ?? "").trim().toLowerCase() === "true";
+  const hasBrightDataKey = Boolean((process.env.BRIGHT_DATA_KEY ?? "").trim());
+
+  const isDemoOnly = explicitDemo || !hasBrightDataKey;
+
   return (
     <SovereignDashboard
       demoMode={isDemoOnly}
