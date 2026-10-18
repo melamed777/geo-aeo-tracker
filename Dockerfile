@@ -24,9 +24,13 @@ COPY . .
 
 ENV NEXT_TELEMETRY_DISABLED=1
 
-# Public, build-time-inlined flag (no secrets). Override with --build-arg.
+# Public, build-time-inlined flags (no secrets). Override with --build-arg.
 ARG NEXT_PUBLIC_CLOUD_STORAGE_ENABLED=false
 ENV NEXT_PUBLIC_CLOUD_STORAGE_ENABLED=$NEXT_PUBLIC_CLOUD_STORAGE_ENABLED
+
+# Subpath the app is served under (leto.ddns.net/geo). Empty in local dev.
+ARG NEXT_PUBLIC_BASE_PATH=/geo
+ENV NEXT_PUBLIC_BASE_PATH=$NEXT_PUBLIC_BASE_PATH
 
 RUN npm run build
 

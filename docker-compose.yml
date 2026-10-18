@@ -5,6 +5,8 @@ services:
       args:
         # Build-time flag: enable the cloud-sync toggle in the client bundle.
         NEXT_PUBLIC_CLOUD_STORAGE_ENABLED: "true"
+        # Subpath the app is served under (leto.ddns.net/geo).
+        NEXT_PUBLIC_BASE_PATH: "/geo"
     ports:
       - "3000:3000"
     # Runtime secrets come from your local .env (gitignored, never in the image).

@@ -2,6 +2,7 @@
 
 import { get, set } from "idb-keyval";
 import { isCloudActive, getSyncSecret } from "./cloud-mode";
+import { apiPath } from "./api";
 
 /** Header that authenticates the client to the /api/state proxy. */
 function syncHeaders(extra?: Record<string, string>): Record<string, string> {
@@ -21,7 +22,7 @@ function syncHeaders(extra?: Record<string, string>): Record<string, string> {
  */
 
 async function cloudGet<T>(key: string): Promise<T | null> {
-  const res = await fetch(`/api/state?key=${encodeURIComponent(key)}`, {
+  const res = await fetch(apiPath(`/api/state?key=${encodeURIComponent(key)}`), {
     method: "GET",
     cache: "no-store",
     headers: syncHeaders(),
@@ -32,7 +33,7 @@ async function cloudGet<T>(key: string): Promise<T | null> {
 }
 
 async function cloudPut<T>(key: string, value: T): Promise<void> {
-  const res = await fetch(`/api/state`, {
+  const res = await fetch(apiPath("/api/state"), {
     method: "PUT",
     headers: syncHeaders({ "Content-Type": "application/json" }),
     body: JSON.stringify({ key, value }),
@@ -41,7 +42,7 @@ async function cloudPut<T>(key: string, value: T): Promise<void> {
 }
 
 async function cloudDelete(key: string): Promise<void> {
-  const res = await fetch(`/api/state?key=${encodeURIComponent(key)}`, {
+  const res = await fetch(apiPath(`/api/state?key=${encodeURIComponent(key)}`), {
     method: "DELETE",
     headers: syncHeaders(),
   });

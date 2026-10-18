@@ -13,6 +13,7 @@ import {
   saveSovereignValue,
   clearSovereignStore,
 } from "@/lib/client/sovereign-store";
+import { apiPath } from "@/lib/client/api";
 import { DEMO_STATE } from "@/lib/demo-data";
 import { AeoAuditTab } from "@/components/dashboard/tabs/aeo-audit-tab";
 import { AutomationTab } from "@/components/dashboard/tabs/automation-tab-v2";
@@ -986,7 +987,7 @@ export function SovereignDashboard({
       return null;
     }
     try {
-      const response = await fetch("/api/scrape", {
+      const response = await fetch(apiPath("/api/scrape"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -1252,7 +1253,7 @@ export function SovereignDashboard({
     setMessage("Generating niche queries...");
 
     try {
-      const response = await fetch("/api/analyze", {
+      const response = await fetch(apiPath("/api/analyze"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -1411,7 +1412,7 @@ Requirements:
       // and abort; per-competitor calls stay well within them. The model
       // occasionally returns an empty completion, so retry once before giving up.
       const attemptOne = async (name: string): Promise<Battlecard | null> => {
-        const response = await fetch("/api/analyze", {
+        const response = await fetch(apiPath("/api/analyze"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -1492,7 +1493,7 @@ ${exampleJson}`,
     setMessage("Running AEO audit...");
 
     try {
-      const response = await fetch("/api/audit", {
+      const response = await fetch(apiPath("/api/audit"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url: state.auditUrl }),

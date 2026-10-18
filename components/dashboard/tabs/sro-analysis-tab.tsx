@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import { apiPath } from "@/lib/client/api";
 import type {
   GroundingResult,
   PlatformResult,
@@ -484,7 +485,7 @@ export function SROAnalysisTab({
     try {
       // 1. Gemini Grounding
       try {
-        const resp = await fetch("/api/analyze", {
+        const resp = await fetch(apiPath("/api/analyze"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -504,7 +505,7 @@ export function SROAnalysisTab({
 
       // 2. Platform Citations
       try {
-        const resp = await fetch("/api/brightdata-platforms", {
+        const resp = await fetch(apiPath("/api/brightdata-platforms"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ keyword: s.keyword, targetUrl: s.targetUrl }),
@@ -519,7 +520,7 @@ export function SROAnalysisTab({
 
       // 3. SERP
       try {
-        const resp = await fetch("/api/serp", {
+        const resp = await fetch(apiPath("/api/serp"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ keyword: s.keyword, targetUrl: s.targetUrl }),
@@ -534,7 +535,7 @@ export function SROAnalysisTab({
 
       // 4. Scrape target + competitors
       try {
-        const resp = await fetch("/api/unlocker", {
+        const resp = await fetch(apiPath("/api/unlocker"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ url: s.targetUrl }),
@@ -548,7 +549,7 @@ export function SROAnalysisTab({
 
       if (serp && serp.topCompetitors.length > 0) {
         try {
-          const resp = await fetch("/api/unlocker", {
+          const resp = await fetch(apiPath("/api/unlocker"), {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ urls: serp.topCompetitors.slice(0, 3) }),
@@ -569,7 +570,7 @@ export function SROAnalysisTab({
 
       // 5. Site Context
       try {
-        const resp = await fetch("/api/site-context", {
+        const resp = await fetch(apiPath("/api/site-context"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ url: s.targetUrl }),
@@ -584,7 +585,7 @@ export function SROAnalysisTab({
 
       // 6. SRO Analysis
       try {
-        const resp = await fetch("/api/sro-analyze", {
+        const resp = await fetch(apiPath("/api/sro-analyze"), {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
