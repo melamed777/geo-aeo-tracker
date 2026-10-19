@@ -1753,7 +1753,7 @@ ${exampleJson}`,
       )}
       {/* ── Sidebar ──────────────────────────────────── */}
       <aside
-        className={`fixed inset-y-0 start-0 z-50 flex w-[250px] shrink-0 flex-col border-e border-th-border bg-th-sidebar transition-transform duration-200 md:static md:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full rtl:translate-x-full"}`}
+        className={`fixed inset-y-0 start-0 z-50 flex w-[250px] shrink-0 flex-col border-e border-th-border bg-th-sidebar transition-transform duration-200 md:static md:translate-x-0 ${sidebarOpen ? "translate-x-0" : "translate-x-full"}`}
       >
         {/* Brand / Workspace switcher */}
         <div className="border-b border-th-border px-4 py-3">
