@@ -57,9 +57,8 @@ Not captured in this environment (no browser automation available). Verified pro
 
 ## 6. Redeploy status (ArgoCD)
 
-- Changes are committed locally on branch `main` (tracking `origin` = `melamed777/geo-aeo-tracker`).
-- **Not yet pushed** — push to `origin/main` triggers ArgoCD auto-sync → live rollout at `https://leto.ddns.net/geo`.
-- Commit: `73bd039` (`Part 2: Hebrew RTL UI + string translation`).
+- Pushed to `origin/main` (`f7d0369..437fcbd`), which triggers ArgoCD auto-sync → live rollout at `https://leto.ddns.net/geo` (behind oauth2-proxy — log in).
+- Commit: `437fcbd` (`Part 2: Hebrew RTL UI + string translation`).
 
 ## 7. Open items → Part 3
 
