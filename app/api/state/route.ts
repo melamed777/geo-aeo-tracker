@@ -28,17 +28,17 @@ function notConfigured() {
  * delete proxy to all stored data. We require a shared secret: the deployer
  * sets STATE_SYNC_SECRET in the environment and enters the same value in the
  * app's Cloud Sync card, which sends it as `x-sync-secret`.
+ *
+ * If STATE_SYNC_SECRET is NOT set, the auth check is skipped and the route
+ * trusts the network layer in front of it (e.g. oauth2-proxy) to authenticate
+ * users. This is the mode used when the app is deployed behind an auth proxy —
+ * cloud sync then works with no per-browser passphrase.
  */
 function checkAuth(req: NextRequest): NextResponse | null {
   const expected = process.env.STATE_SYNC_SECRET;
   if (!expected) {
-    return NextResponse.json(
-      {
-        error:
-          "Cloud sync requires STATE_SYNC_SECRET to be set on this deployment.",
-      },
-      { status: 503 },
-    );
+    // No shared secret configured — rely on the upstream auth proxy.
+    return null;
   }
   const provided = req.headers.get("x-sync-secret") ?? "";
   const a = Buffer.from(provided);
