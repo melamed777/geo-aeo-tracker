@@ -160,6 +160,13 @@ function storageKeyForWorkspace(wsId: string) {
   return wsId === "default" ? STORAGE_KEY : `sovereign-aeo-tracker-${wsId}`;
 }
 
+/** Persist the workspace list to localStorage (fast) AND the cloud store
+ *  (Supabase) so workspaces are visible across browsers and devices. */
+function persistWorkspaces(list: Workspace[]) {
+  localStorage.setItem(WORKSPACES_KEY, JSON.stringify(list));
+  saveSovereignValue(WORKSPACES_KEY, list).catch(() => {});
+}
+
 function generateId() {
   return Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
 }
@@ -360,10 +367,26 @@ export function SovereignDashboard({
 
     if (demoMode) return; // Skip workspace loading in demo mode
 
-    // Workspaces
-    try {
-      const raw = localStorage.getItem(WORKSPACES_KEY);
-      const parsed: Workspace[] = raw ? JSON.parse(raw) : [];
+    // Workspaces — load from the cloud store (Supabase) so they sync across
+    // browsers/devices, falling back to localStorage for legacy data.
+    (async () => {
+      let parsed: Workspace[] = [];
+      try {
+        const cloudList = await loadSovereignValue<Workspace[]>(
+          WORKSPACES_KEY,
+          [],
+        );
+        if (Array.isArray(cloudList) && cloudList.length > 0) {
+          parsed = cloudList;
+        } else {
+          const raw = localStorage.getItem(WORKSPACES_KEY);
+          parsed = raw ? JSON.parse(raw) : [];
+        }
+      } catch {
+        const raw = localStorage.getItem(WORKSPACES_KEY);
+        parsed = raw ? JSON.parse(raw) : [];
+      }
+
       if (parsed.length === 0) {
         // Create default workspace
         const defaultWs: Workspace = {
@@ -372,20 +395,14 @@ export function SovereignDashboard({
           createdAt: new Date().toISOString(),
         };
         parsed.push(defaultWs);
-        localStorage.setItem(WORKSPACES_KEY, JSON.stringify(parsed));
       }
+
       setWorkspaces(parsed);
+      // Persist back so legacy localStorage data migrates to the cloud store.
+      persistWorkspaces(parsed);
       const savedActiveId = localStorage.getItem(ACTIVE_WS_KEY) ?? parsed[0].id;
       setActiveWsId(savedActiveId);
-    } catch {
-      const defaultWs: Workspace = {
-        id: "default",
-        brandName: "Default",
-        createdAt: new Date().toISOString(),
-      };
-      setWorkspaces([defaultWs]);
-      setActiveWsId("default");
-    }
+    })();
   }, [applyTheme, demoMode]);
 
   /** Load app state for active workspace */
@@ -470,7 +487,7 @@ export function SovereignDashboard({
             ? { ...ws, brandName: state.brand.brandName || ws.brandName }
             : ws,
         );
-        localStorage.setItem(WORKSPACES_KEY, JSON.stringify(updated));
+        persistWorkspaces(updated);
         return updated;
       });
     }
@@ -627,7 +644,7 @@ export function SovereignDashboard({
     };
     const updated = [...workspaces, ws];
     setWorkspaces(updated);
-    localStorage.setItem(WORKSPACES_KEY, JSON.stringify(updated));
+    persistWorkspaces(updated);
     // Save current, switch to new
     saveSovereignValue(storageKeyForWorkspace(activeWsId), state);
     setState({
@@ -649,7 +666,7 @@ export function SovereignDashboard({
     if (!window.confirm("Delete this workspace and all its data?")) return;
     const updated = workspaces.filter((w) => w.id !== wsId);
     setWorkspaces(updated);
-    localStorage.setItem(WORKSPACES_KEY, JSON.stringify(updated));
+    persistWorkspaces(updated);
     clearSovereignStore(storageKeyForWorkspace(wsId));
     if (activeWsId === wsId) {
       switchWorkspace(updated[0].id);
