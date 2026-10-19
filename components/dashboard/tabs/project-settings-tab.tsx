@@ -8,16 +8,27 @@ import {
   setSyncSecret,
 } from "@/lib/client/cloud-mode";
 
+type SyncState = {
+  status: "idle" | "saving" | "saved" | "error" | "loading";
+  at: string | null;
+};
+
 type ProjectSettingsTabProps = {
   brand: BrandConfig;
   onBrandChange: (patch: Partial<BrandConfig>) => void;
   onReset?: () => void;
+  syncState: SyncState;
+  onSaveNow: () => void;
+  onRefresh: () => void;
 };
 
 export function ProjectSettingsTab({
   brand,
   onBrandChange,
   onReset,
+  syncState,
+  onSaveNow,
+  onRefresh,
 }: ProjectSettingsTabProps) {
   return (
     <div className="space-y-5">
@@ -90,7 +101,11 @@ export function ProjectSettingsTab({
         <StatusChip label="Keywords" ok={brand.keywords.trim().length > 0} />
       </div>
 
-      <CloudSyncCard />
+      <CloudSyncCard
+        syncState={syncState}
+        onSaveNow={onSaveNow}
+        onRefresh={onRefresh}
+      />
 
       {/* Danger zone */}
       {onReset && (
@@ -123,7 +138,15 @@ function subscribeToCloudPref(callback: () => void): () => void {
   return () => window.removeEventListener("storage", handler);
 }
 
-function CloudSyncCard() {
+function CloudSyncCard({
+  syncState,
+  onSaveNow,
+  onRefresh,
+}: {
+  syncState: SyncState;
+  onSaveNow: () => void;
+  onRefresh: () => void;
+}) {
   const enabled = useSyncExternalStore(
     subscribeToCloudPref,
     () => isCloudEnabledByUser(),
@@ -215,6 +238,51 @@ function CloudSyncCard() {
           </p>
         </div>
       )}
+
+      {/* Data sync status + manual controls */}
+      <div className="mt-4 border-t border-th-border pt-3">
+        <div className="mb-2 flex items-center gap-2 text-sm">
+          <span
+            className={`inline-block h-2.5 w-2.5 rounded-full ${
+              syncState.status === "saved"
+                ? "bg-th-success"
+                : syncState.status === "error"
+                  ? "bg-th-danger"
+                  : syncState.status === "idle"
+                    ? "bg-th-text-muted"
+                    : "bg-th-accent animate-pulse"
+            }`}
+          />
+          <span className="text-th-text">
+            {syncState.status === "saved" && "Synced to database"}
+            {syncState.status === "saving" && "Saving…"}
+            {syncState.status === "loading" && "Loading from database…"}
+            {syncState.status === "error" && "Save failed"}
+            {syncState.status === "idle" && "Not synced yet"}
+          </span>
+          {syncState.at && (
+            <span className="text-xs text-th-text-muted">
+              {new Date(syncState.at).toLocaleTimeString()}
+            </span>
+          )}
+        </div>
+        <div className="flex gap-2">
+          <button
+            onClick={onSaveNow}
+            disabled={syncState.status === "saving"}
+            className="rounded-lg bg-th-accent px-4 py-2 text-sm font-medium text-white hover:bg-th-accent-hover disabled:opacity-50"
+          >
+            Save now
+          </button>
+          <button
+            onClick={onRefresh}
+            disabled={syncState.status === "loading"}
+            className="rounded-lg border border-th-border bg-th-card-alt px-4 py-2 text-sm font-medium text-th-text hover:bg-th-card"
+          >
+            Refresh
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

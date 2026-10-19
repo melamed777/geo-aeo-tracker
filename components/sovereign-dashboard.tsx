@@ -303,6 +303,10 @@ export function SovereignDashboard({
   );
   const [theme, setTheme] = useState<"light" | "dark" | "system">("system");
   const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
+  const [syncState, setSyncState] = useState<{
+    status: "idle" | "saving" | "saved" | "error" | "loading";
+    at: string | null;
+  }>({ status: "idle", at: null });
   const [activeWsId, setActiveWsId] = useState<string>("default");
   const [showWsPicker, setShowWsPicker] = useState(false);
   const [showScoreInfo, setShowScoreInfo] = useState(false);
@@ -1528,6 +1532,37 @@ ${exampleJson}`,
     setMessage("All data cleared.");
   }
 
+  /** Manually persist the current workspace state to storage/cloud now. */
+  async function saveNow() {
+    if (demoMode || !activeWsId) return;
+    setSyncState({ status: "saving", at: null });
+    try {
+      await saveSovereignValue(storageKeyForWorkspace(activeWsId), state);
+      setSyncState({ status: "saved", at: new Date().toISOString() });
+      setMessage("Saved to database.");
+    } catch {
+      setSyncState({ status: "error", at: null });
+      setMessage("Save failed — check the console.");
+    }
+  }
+
+  /** Manually re-load the current workspace state from storage/cloud. */
+  async function refreshNow() {
+    if (demoMode || !activeWsId) return;
+    setSyncState({ status: "loading", at: null });
+    const data = await loadSovereignValue<AppState>(
+      storageKeyForWorkspace(activeWsId),
+      defaultState,
+    );
+    setState((prev) => ({
+      ...prev,
+      ...data,
+      brand: { ...prev.brand, ...(data.brand ?? {}) },
+    }));
+    setSyncState({ status: "saved", at: new Date().toISOString() });
+    setMessage("Synced from database.");
+  }
+
   function renderActiveTab() {
     if (activeTab === "Project Settings") {
       return (
@@ -1540,6 +1575,9 @@ ${exampleJson}`,
             }))
           }
           onReset={handleResetData}
+          syncState={syncState}
+          onSaveNow={saveNow}
+          onRefresh={refreshNow}
         />
       );
     }
