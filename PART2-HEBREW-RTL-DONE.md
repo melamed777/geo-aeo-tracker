@@ -55,10 +55,15 @@ Rendered output verified via `curl`:
 
 Not captured in this environment (no browser automation available). Verified programmatically (lang/dir/title/HTTP 200 + production build). **Manual follow-up:** open `http://localhost:3000` (dev) or `https://leto.ddns.net/geo` (prod) and capture desktop + one tab for the client-facing record. Key things to eyeball: sidebar on the right, right-aligned Hebrew, the Visibility Analytics chart axes, and that `42%`-style numbers aren't reversed.
 
-## 6. Redeploy status (ArgoCD)
+## 6. Redeploy status (GitOps)
 
-- Pushed to `origin/main` (`f7d0369..437fcbd`), which triggers ArgoCD auto-sync → live rollout at `https://leto.ddns.net/geo` (behind oauth2-proxy — log in).
-- Commit: `437fcbd` (`Part 2: Hebrew RTL UI + string translation`).
+Deployed via the **GitOps repo** (`melamed777/gitops`, `main`) that ArgoCD actually watches (app `geo`, path `apps/geo/base`, `automated.prune + selfHeal`):
+
+1. App source pushed: `geo-aeo-tracker` `main` → `437fcbd` (Part 2) + `f3ed4ac` (docs).
+2. Docker image built + pushed (linux/amd64): `ghcr.io/melamed777/geo-aeo-tracker:1.5.6`.
+3. GitOps repo bumped + pushed: `gitops` `main` → `6d6a079` (`geo: bump to 1.5.6`), image tag `1.5.5 → 1.5.6` in `apps/geo/base/deployment.yaml`.
+
+ArgoCD auto-syncs → live at `https://leto.ddns.net/geo` (behind oauth2-proxy — log in). Note: `kubectl` was unreachable from the working shell, so the sync itself was not programmatically confirmed.
 
 ## 7. Open items → Part 3
 
