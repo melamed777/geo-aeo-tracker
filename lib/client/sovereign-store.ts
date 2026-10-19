@@ -124,9 +124,21 @@ export async function saveSovereignValue<T>(
   value: T,
 ): Promise<void> {
   if (isCloudActive()) {
-    // Cloud is source of truth — await it so errors surface to the caller.
-    await cloudPut(key, value);
-    // Best-effort local mirror for offline reads
+    // Cloud is the source of truth when it works. If the write fails (e.g. a
+    // 401 because the sync passphrase hasn't been entered yet), fall back to
+    // the local mirror instead of dropping the save entirely — otherwise the
+    // workspace is lost on refresh.
+    try {
+      await cloudPut(key, value);
+    } catch (err) {
+      if (typeof console !== "undefined") {
+        console.warn(
+          "[sovereign-store] cloud save failed, using local cache:",
+          err,
+        );
+      }
+    }
+    // Always mirror to IDB for offline reads and the fallback above.
     set(key, value).catch(() => {});
     return;
   }
