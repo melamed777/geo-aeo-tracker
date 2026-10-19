@@ -44,6 +44,7 @@ import {
   COUNTRIES,
   tabs,
 } from "@/components/dashboard/types";
+import { t } from "@/lib/i18n/he";
 
 /* ── Inline SVG icon helpers (16×16) ─────────────────────────────── */
 function Icon({ children }: { children: ReactNode }) {
@@ -217,82 +218,82 @@ const tabMeta: Record<
   { title: string; tooltip: string; details: string }
 > = {
   "Project Settings": {
-    title: "Project Settings",
-    tooltip: "Set your brand, site, keywords, and context.",
+    title: t("tabs.projectSettings"),
+    tooltip: "הגדר את המותג, האתר, מילות המפתח וההקשר שלך.",
     details:
-      "Define the exact brand and website to track. This context is reused across analysis flows so outputs stay targeted to your business.",
+      "הגדר בדיוק את המותג והאתר למעקב. ההקשר הזה נעשה שימוש חוזר בכל תהליכי הניתוח כך שהפלטים יישארו ממוקדים בעסק שלך.",
   },
   "Prompt Hub": {
-    title: "Prompt Hub",
-    tooltip: "Manage your tracking prompt library.",
+    title: t("tabs.promptHub"),
+    tooltip: "נהל את ספריית שאילתות המעקב שלך.",
     details:
-      "Build a library of prompts to track over time. Use {brand} to inject your brand name. Run individual prompts or batch-run all across selected models.",
+      "בנה ספריית שאילתות למעקב לאורך זמן. השתמש ב-{brand} כדי להזריק את שם המותג שלך. הרץ שאילתות בודדות או אצווה של כולן על פני המודלים שנבחרו.",
   },
   "Persona Fan-Out": {
-    title: "Persona Fan-Out",
-    tooltip: "Create and run persona-specific prompt variants.",
+    title: t("tabs.personaFanOut"),
+    tooltip: "צור והרץ גרסאות שאילתה לפי פרסונה.",
     details:
-      "Write one core query, define personas, and generate persona-specific variants. Run each variant independently to compare how different audience angles change model responses.",
+      "כתוב שאילתת ליבה אחת, הגדר פרסונות, וצור גרסאות ספציפיות לכל פרסונה. הרץ כל גרסה בנפרד כדי להשוות כיצד זוויות קהל שונות משנות את תשובות המודל.",
   },
   "Niche Explorer": {
-    title: "Niche Explorer",
-    tooltip: "Generate high-intent GEO/AEO queries.",
+    title: t("tabs.nicheExplorer"),
+    tooltip: "צור שאילתות GEO/AEO עם כוונת רכישה גבוהה.",
     details:
-      "Build a reusable bank of niche prompts focused on discoverability, citations, and buyer intent so your tracking set stays comprehensive.",
+      "בנה מאגר שאילתות נישה לשימוש חוזר, ממוקד בגילוי, אזכורים וכוונת רכישה, כך שסט המעקב שלך יישאר מקיף.",
   },
   Automation: {
-    title: "Automation",
-    tooltip: "Configure recurring runs via cron/workflows.",
+    title: t("tabs.automation"),
+    tooltip: "הגדר הרצות חוזרות באמצעות cron/workflows.",
     details:
-      "Store deployment-ready scheduling templates for Vercel Cron and GitHub Actions so tracking can run automatically on a repeat cadence.",
+      "אחסן תבניות תזמון מוכנות לפריסה עבור Vercel Cron ו-GitHub Actions כך שהמעקב ירוץ אוטומטית בקצב קבוע.",
   },
   "Competitor Battlecards": {
-    title: "Competitors",
-    tooltip: "Compare model sentiment vs competitors.",
+    title: t("tabs.battlecards"),
+    tooltip: "השווה את הסנטימנט של המודלים מול מתחרים.",
     details:
-      "Generate side-by-side competitor summaries and sentiment snapshots. See which competitors are mentioned alongside your brand and identify gaps.",
+      "צור סיכומי מתחרים זה לצד זה ותמונות מצב של סנטימנט. ראה אילו מתחרים מוזכרים לצד המותג שלך וזהה פערים.",
   },
   Responses: {
-    title: "Responses",
-    tooltip: "Browse AI model responses with brand highlighting.",
+    title: t("tabs.responses"),
+    tooltip: "עיין בתשובות של מודלי ה-AI עם הדגשת המותג.",
     details:
-      "Browse all collected AI responses. Brand and competitor mentions are highlighted in-context. View visibility scores, sentiment, and cited sources per response.",
+      "עיין בכל תשובות ה-AI שנאספו. אזכורי מותג ומתחרים מודגשים בהקשר. צפה בציוני נראות, סנטימנט ומקורות מצוטטים לכל תשובה.",
   },
   "Visibility Analytics": {
-    title: "Analytics",
-    tooltip: "Track visibility score and sentiment trends over time.",
+    title: t("tabs.visibilityAnalytics"),
+    tooltip: "עקוב אחר ציון הנראות ומגמות הסנטימנט לאורך זמן.",
     details:
-      "Monitor your brand visibility score over time, track sentiment distribution across responses, and export data as CSV for further analysis.",
+      "עקוב אחר ציון הנראות של המותג שלך לאורך זמן, עקוב אחר התפלגות הסנטימנט בין התשובות, וייצא נתונים כ-CSV לניתוח נוסף.",
   },
   Citations: {
-    title: "Citations",
-    tooltip: "Analyze cited sources grouped by domain.",
+    title: t("tabs.citations"),
+    tooltip: "נתח מקורות מצוטטים מקובצים לפי דומיין.",
     details:
-      "See which domains and URLs get cited most in AI responses. Group by domain to find citation hubs, or search by URL for specific sources. Export data as CSV.",
+      "ראה אילו דומיינים וכתובות URL מצוטטים הכי הרבה בתשובות AI. קבץ לפי דומיין כדי למצוא מוקדי אזכור, או חפש לפי URL למקורות ספציפיים. ייצא נתונים כ-CSV.",
   },
   "Citation Opportunities": {
-    title: "Citation Opps",
-    tooltip: "Competitor-cited sources where you're not mentioned.",
+    title: t("tabs.citationOpportunities"),
+    tooltip: "מקורות שמצטטים את המתחרים שלך — ואתה לא מופיע בהם.",
     details:
-      "Discover high-value outreach targets: URLs where AI models cite your competitors but don't mention your brand. Each opportunity includes an outreach brief.",
+      "גלה יעדי פנייה בעלי ערך גבוה: כתובות URL שבהן מודלי AI מצטטים את המתחרים שלך אך לא מזכירים את המותג שלך. כל הזדמנות כוללת תקציר פנייה.",
   },
   "AEO Audit": {
-    title: "AEO Audit",
-    tooltip: "Audit site readiness for LLM discovery.",
+    title: t("tabs.aeoAudit"),
+    tooltip: "בדוק את מוכנות האתר שלך לגילוי ע״י LLM.",
     details:
-      "Run checks for llms.txt, schema signals, and BLUF-style clarity indicators to quickly assess AI-answer readiness of a target URL.",
+      "הרץ בדיקות עבור llms.txt, אותות schema ומדדי בהירות בסגנון BLUF כדי להעריך במהירות את מוכנות ה-URL ל-AI.",
   },
   "SRO Analysis": {
-    title: "SRO Analysis",
-    tooltip: "Analyze Selection Rate Optimization across AI platforms.",
+    title: t("tabs.sroAnalysis"),
+    tooltip: "נתח אופטימיזציית שיעור בחירה (SRO) בפלטפורמות AI.",
     details:
-      "Run a full SRO pipeline: Gemini grounding, cross-platform citation checks, SERP analysis, and AI-powered recommendations to improve your selection rate in LLM responses.",
+      "הרץ צינור SRO מלא: grounding של Gemini, בדיקות אזכור בין פלטפורמות, ניתוח SERP והמלצות מבוססות AI לשיפור שיעור הבחירה שלך בתשובות LLM.",
   },
   Documentation: {
-    title: "Documentation",
-    tooltip: "Learn about every feature in the tracker.",
+    title: t("tabs.documentation"),
+    tooltip: "למד על כל התכונות בכלי המעקב.",
     details:
-      "A comprehensive guide to all tabs, features, scoring methodology, supported models, and data privacy. Searchable and browsable.",
+      "מדריך מקיף לכל הלשוניות, התכונות, מתודולוגיית הניקוד, המודלים הנתמכים ופרטיות הנתונים. ניתן לחיפוש ולגלישה.",
   },
 };
 
@@ -306,7 +307,7 @@ export function SovereignDashboard({
   );
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState(
-    demoMode ? "Demo mode — read-only preview" : "",
+    demoMode ? "מצב הדגמה — תצוגה מקדימה לקריאה בלבד" : "",
   );
   const [theme, setTheme] = useState<"light" | "dark" | "system">("system");
   const [workspaces, setWorkspaces] = useState<Workspace[]>([]);
@@ -391,7 +392,7 @@ export function SovereignDashboard({
         // Create default workspace
         const defaultWs: Workspace = {
           id: "default",
-          brandName: "Default",
+          brandName: "ברירת מחדל",
           createdAt: new Date().toISOString(),
         };
         parsed.push(defaultWs);
@@ -553,7 +554,7 @@ export function SovereignDashboard({
     if (prompts.length === 0 || providers.length === 0) return;
 
     setBusy(true);
-    setMessage("Auto-run: Starting scheduled batch…");
+    setMessage("הרצה אוטומטית: מתחיל אצווה מתוזמנת…");
 
     const allRuns: ScrapeRun[] = [];
     for (const prompt of prompts) {
@@ -576,7 +577,7 @@ export function SovereignDashboard({
     }));
 
     setMessage(
-      `Auto-run complete: ${allRuns.length} results.${newAlerts.length > 0 ? ` ${newAlerts.length} drift alert${newAlerts.length > 1 ? "s" : ""} triggered.` : ""}`,
+      `הרצה אוטומטית הושלמה: ${allRuns.length} תוצאות.${newAlerts.length > 0 ? ` הופעלו ${newAlerts.length} התראות סחף.` : ""}`,
     );
     setBusy(false);
   }, []);
@@ -619,7 +620,7 @@ export function SovereignDashboard({
 
   function switchWorkspace(wsId: string) {
     if (demoMode) {
-      setMessage("Demo mode — workspaces are read-only");
+      setMessage("מצב הדגמה — סביבות עבודה לקריאה בלבד");
       return;
     }
     // Save current state first
@@ -628,13 +629,13 @@ export function SovereignDashboard({
     localStorage.setItem(ACTIVE_WS_KEY, wsId);
     setShowWsPicker(false);
     setMessage(
-      `Switched to ${workspaces.find((w) => w.id === wsId)?.brandName ?? "workspace"}`,
+      `עברת ל${workspaces.find((w) => w.id === wsId)?.brandName ?? "סביבת עבודה"}`,
     );
   }
 
   function createWorkspace(name: string) {
     if (demoMode) {
-      setMessage("Demo mode — workspaces are read-only");
+      setMessage("מצב הדגמה — סביבות עבודה לקריאה בלבד");
       return;
     }
     const ws: Workspace = {
@@ -654,16 +655,16 @@ export function SovereignDashboard({
     setActiveWsId(ws.id);
     localStorage.setItem(ACTIVE_WS_KEY, ws.id);
     setShowWsPicker(false);
-    setMessage(`Created workspace: ${name}`);
+    setMessage(`נוצרה סביבת עבודה: ${name}`);
   }
 
   function deleteWorkspace(wsId: string) {
     if (demoMode) {
-      setMessage("Demo mode — workspaces are read-only");
+      setMessage("מצב הדגמה — סביבות עבודה לקריאה בלבד");
       return;
     }
     if (workspaces.length <= 1) return;
-    if (!window.confirm("Delete this workspace and all its data?")) return;
+    if (!window.confirm("למחוק את סביבת העבודה הזו ואת כל הנתונים שלה?")) return;
     const updated = workspaces.filter((w) => w.id !== wsId);
     setWorkspaces(updated);
     persistWorkspaces(updated);
@@ -1004,7 +1005,7 @@ export function SovereignDashboard({
     provider: Provider,
   ): Promise<ScrapeRun | null> {
     if (demoMode) {
-      setMessage("Demo mode — API calls are disabled");
+      setMessage("מצב הדגמה — קריאות API מושבתות");
       return null;
     }
     try {
@@ -1059,7 +1060,7 @@ export function SovereignDashboard({
         : [state.provider];
     const count = providers.length;
     setBusy(true);
-    setMessage(`Running across ${count} model${count > 1 ? "s" : ""}...`);
+    setMessage(`מריץ על פני ${count} מודל${count > 1 ? "ים" : ""}...`);
 
     try {
       const results = await Promise.allSettled(
@@ -1072,7 +1073,7 @@ export function SovereignDashboard({
 
       if (runs.length === 0) {
         setMessage(
-          "All scrape requests failed. Check your Bright Data config.",
+          "כל בקשות ה-scrape נכשלו. בדוק את תצורת ה-Bright Data שלך.",
         );
         return;
       }
@@ -1084,11 +1085,11 @@ export function SovereignDashboard({
 
       const failed = count - runs.length;
       setMessage(
-        `Done: ${runs.length}/${count} model${count > 1 ? "s" : ""} returned results.${failed > 0 ? ` ${failed} failed.` : ""}`,
+        `הושלם: ${runs.length}/${count} מודל${count > 1 ? "ים" : ""} החזירו תוצאות.${failed > 0 ? ` ${failed} נכשלו.` : ""}`,
       );
     } catch (error) {
       setMessage(
-        error instanceof Error ? error.message : "Failed to run scraper.",
+        error instanceof Error ? error.message : "הרצת ה-scraper נכשלה.",
       );
     } finally {
       setBusy(false);
@@ -1101,7 +1102,7 @@ export function SovereignDashboard({
       p.text.replace(/\{brand\}/gi, state.brand.brandName || "our brand"),
     );
     if (prompts.length === 0) {
-      setMessage("No tracking prompts to run. Add prompts first.");
+      setMessage("אין שאילתות מעקב להרצה. הוסף שאילתות קודם.");
       return;
     }
     const providers =
@@ -1110,7 +1111,7 @@ export function SovereignDashboard({
         : [state.provider];
     const totalJobs = prompts.length * providers.length;
     setBusy(true);
-    setMessage(`Batch: launching ${totalJobs} jobs in parallel...`);
+    setMessage(`אצווה: משיק ${totalJobs} משימות במקביל...`);
 
     // Fire ALL prompt × provider combinations at once
     const jobs = prompts.flatMap((prompt) =>
@@ -1134,7 +1135,7 @@ export function SovereignDashboard({
     }));
 
     setMessage(
-      `Batch complete: ${allRuns.length} results from ${prompts.length} prompts × ${providers.length} models.${failed > 0 ? ` ${failed} failed.` : ""}`,
+      `אצווה הושלמה: ${allRuns.length} תוצאות מ-${prompts.length} שאילתות × ${providers.length} מודלים.${failed > 0 ? ` ${failed} נכשלו.` : ""}`,
     );
     setBusy(false);
   }
@@ -1166,7 +1167,7 @@ export function SovereignDashboard({
         ].slice(0, 50),
       };
     });
-    setMessage("Tracking prompt added.");
+    setMessage("שאילתת מעקב נוספה.");
   }
 
   function removeCustomPrompt(value: string, deleteResponses?: boolean) {
@@ -1267,11 +1268,11 @@ export function SovereignDashboard({
 
   async function runNicheExplorer() {
     if (demoMode) {
-      setMessage("Demo mode — API calls are disabled");
+      setMessage("מצב הדגמה — קריאות API מושבתות");
       return;
     }
     setBusy(true);
-    setMessage("Generating niche queries...");
+    setMessage("יוצר שאילתות נישה...");
 
     try {
       const response = await fetch(apiPath("/api/analyze"), {
@@ -1298,12 +1299,12 @@ Requirements:
       setState((prev) => ({ ...prev, nicheQueries: queries }));
       setMessage(
         queries.length > 0
-          ? "Niche queries updated."
-          : "No valid niche queries returned. Try a more specific niche.",
+          ? "שאילתות הנישה עודכנו."
+          : "לא הוחזרו שאילתות נישה תקינות. נסה נישה ספציפית יותר.",
       );
     } catch (error) {
       setMessage(
-        error instanceof Error ? error.message : "Failed generating queries.",
+        error instanceof Error ? error.message : "יצירת השאילתות נכשלה.",
       );
     } finally {
       setBusy(false);
@@ -1312,11 +1313,11 @@ Requirements:
 
   async function runBattlecards() {
     if (demoMode) {
-      setMessage("Demo mode — API calls are disabled");
+      setMessage("מצב הדגמה — קריאות API מושבתות");
       return;
     }
     setBusy(true);
-    setMessage("Building competitor battlecards...");
+    setMessage("בונה כרטיסי מתחרים...");
 
     try {
       const competitorList = state.competitors
@@ -1324,7 +1325,7 @@ Requirements:
         .filter(Boolean);
 
       if (competitorList.length === 0) {
-        setMessage("Add at least one competitor first.");
+        setMessage("הוסף לפחות מתחרה אחד קודם.");
         setBusy(false);
         return;
       }
@@ -1495,10 +1496,10 @@ ${exampleJson}`,
       );
 
       setState((prev) => ({ ...prev, battlecards: parsed }));
-      setMessage(`Battlecards ready for ${parsed.length} competitors.`);
+      setMessage(`כרטיסי מתחרים מוכנים עבור ${parsed.length} מתחרים.`);
     } catch (error) {
       setMessage(
-        error instanceof Error ? error.message : "Failed building battlecards.",
+        error instanceof Error ? error.message : "בניית כרטיסי המתחרים נכשלה.",
       );
     } finally {
       setBusy(false);
@@ -1507,11 +1508,11 @@ ${exampleJson}`,
 
   async function runAudit() {
     if (demoMode) {
-      setMessage("Demo mode — API calls are disabled");
+      setMessage("מצב הדגמה — קריאות API מושבתות");
       return;
     }
     setBusy(true);
-    setMessage("Running AEO audit...");
+    setMessage("מריץ ביקורת AEO...");
 
     try {
       const response = await fetch(apiPath("/api/audit"), {
@@ -1523,10 +1524,10 @@ ${exampleJson}`,
       if (!response.ok) throw new Error(data.error || "Audit failed");
 
       setState((prev) => ({ ...prev, auditReport: data }));
-      setMessage("Audit complete.");
+      setMessage("הביקורת הושלמה.");
     } catch (error) {
       setMessage(
-        error instanceof Error ? error.message : "Failed running audit.",
+        error instanceof Error ? error.message : "הרצת הביקורת נכשלה.",
       );
     } finally {
       setBusy(false);
@@ -1535,18 +1536,18 @@ ${exampleJson}`,
 
   async function handleResetData() {
     if (demoMode) {
-      setMessage("Demo mode — data cannot be modified");
+      setMessage("מצב הדגמה — לא ניתן לשנות נתונים");
       return;
     }
     if (
       !window.confirm(
-        "This will delete ALL saved data (runs, prompts, settings). Continue?",
+        "פעולה זו תמחק את כל הנתונים השמורים (הרצות, שאילתות, הגדרות). להמשיך?",
       )
     )
       return;
     await clearSovereignStore(storageKeyForWorkspace(activeWsId));
     setState(defaultState);
-    setMessage("All data cleared.");
+    setMessage("כל הנתונים נמחקו.");
   }
 
   /** Manually persist the current workspace state to storage/cloud now. */
@@ -1556,10 +1557,10 @@ ${exampleJson}`,
     try {
       await saveSovereignValue(storageKeyForWorkspace(activeWsId), state);
       setSyncState({ status: "saved", at: new Date().toISOString() });
-      setMessage("Saved to database.");
+      setMessage("נשמר למסד הנתונים.");
     } catch {
       setSyncState({ status: "error", at: null });
-      setMessage("Save failed — check the console.");
+      setMessage("השמירה נכשלה — בדוק את הקונסול.");
     }
   }
 
@@ -1577,7 +1578,7 @@ ${exampleJson}`,
       brand: { ...prev.brand, ...(data.brand ?? {}) },
     }));
     setSyncState({ status: "saved", at: new Date().toISOString() });
-    setMessage("Synced from database.");
+    setMessage("סונכרן ממסד הנתונים.");
   }
 
   function renderActiveTab() {
@@ -1752,7 +1753,7 @@ ${exampleJson}`,
       )}
       {/* ── Sidebar ──────────────────────────────────── */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex w-[250px] shrink-0 flex-col border-r border-th-border bg-th-sidebar transition-transform duration-200 md:static md:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed inset-y-0 start-0 z-50 flex w-[250px] shrink-0 flex-col border-e border-th-border bg-th-sidebar transition-transform duration-200 md:static md:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full rtl:translate-x-full"}`}
       >
         {/* Brand / Workspace switcher */}
         <div className="border-b border-th-border px-4 py-3">
@@ -1767,14 +1768,14 @@ ${exampleJson}`,
                 <div className="truncate text-sm font-semibold text-th-text">
                   {state.brand.brandName || "AEO Tracker"}
                 </div>
-                <div className="text-xs text-th-text-muted">Demo workspace</div>
+                <div className="text-xs text-th-text-muted">סביבת עבודה להדגמה</div>
               </div>
             </div>
           ) : (
             <>
               <button
                 onClick={() => setShowWsPicker(!showWsPicker)}
-                className="flex w-full items-center gap-2 rounded-lg px-1 py-0.5 text-left hover:bg-th-card-hover transition-colors"
+                className="flex w-full items-center gap-2 rounded-lg px-1 py-0.5 text-start hover:bg-th-card-hover transition-colors"
               >
                 <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-th-accent">
                   <span className="text-xs font-bold text-th-text-inverse">
@@ -1803,26 +1804,26 @@ ${exampleJson}`,
               {showWsPicker && (
                 <div className="mt-2 rounded-lg border border-th-border bg-th-card p-2 shadow-lg">
                   <div className="mb-2 text-xs font-medium text-th-text-muted uppercase tracking-wider">
-                    Workspaces
+                    סביבות עבודה
                   </div>
                   <div className="max-h-[200px] space-y-1 overflow-auto">
                     {workspaces.map((ws) => (
                       <div key={ws.id} className="flex items-center gap-1">
                         <button
                           onClick={() => switchWorkspace(ws.id)}
-                          className={`flex-1 rounded-md px-2 py-1.5 text-left text-sm transition-colors ${
+                          className={`flex-1 rounded-md px-2 py-1.5 text-start text-sm transition-colors ${
                             ws.id === activeWsId
                               ? "bg-th-accent-soft text-th-text-accent font-medium"
                               : "text-th-text-secondary hover:bg-th-card-hover"
                           }`}
                         >
-                          {ws.brandName || "Untitled"}
+                          {ws.brandName || "ללא שם"}
                         </button>
                         {workspaces.length > 1 && (
                           <button
                             onClick={() => deleteWorkspace(ws.id)}
                             className="rounded p-1 text-xs text-th-text-muted hover:text-th-danger hover:bg-th-danger-soft"
-                            title="Delete workspace"
+                            title="מחק סביבת עבודה"
                           >
                             ✕
                           </button>
@@ -1832,12 +1833,12 @@ ${exampleJson}`,
                   </div>
                   <button
                     onClick={() => {
-                      const name = window.prompt("Brand / workspace name:");
+                      const name = window.prompt("שם מותג / סביבת עבודה:");
                       if (name?.trim()) createWorkspace(name.trim());
                     }}
                     className="mt-2 flex w-full items-center gap-1.5 rounded-md border border-dashed border-th-border px-2 py-1.5 text-sm text-th-text-accent hover:bg-th-accent-soft transition-colors"
                   >
-                    <span className="text-base">+</span> New Brand
+                    <span className="text-base">+</span> מותג חדש
                   </button>
                 </div>
               )}
@@ -1854,7 +1855,7 @@ ${exampleJson}`,
               <div key={tab}>
                 {isSettings && (
                   <div className="mb-1 px-2 text-xs font-medium uppercase tracking-wider text-th-text-muted">
-                    Setup
+                    הגדרה
                   </div>
                 )}
                 <button
@@ -1863,16 +1864,11 @@ ${exampleJson}`,
                     setActiveTab(tab);
                     setSidebarOpen(false);
                   }}
-                  className={`group mb-0.5 flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-left text-sm transition-colors ${
+                  className={`group mb-0.5 flex w-full items-center gap-2.5 rounded-lg px-2.5 py-2 text-start text-sm transition-colors ${
                     active
-                      ? "bg-th-accent-soft text-th-text font-medium"
+                      ? "nav-active bg-th-accent-soft text-th-text font-medium"
                       : "text-th-text-secondary hover:bg-th-card-hover hover:text-th-text"
                   }`}
-                  style={
-                    active
-                      ? { boxShadow: "inset 3px 0 0 var(--th-accent)" }
-                      : undefined
-                  }
                 >
                   <span
                     className={
@@ -1885,14 +1881,14 @@ ${exampleJson}`,
                   </span>
                   {tabMeta[tab].title}
                   {tab === "Automation" && unreadAlertCount > 0 && (
-                    <span className="ml-auto rounded-full bg-th-danger px-1.5 py-0.5 text-[10px] font-bold leading-none text-white">
+                    <span className="ms-auto rounded-full bg-th-danger px-1.5 py-0.5 text-[10px] font-bold leading-none text-white">
                       {unreadAlertCount}
                     </span>
                   )}
                 </button>
                 {isSettings && (
                   <div className="mb-1 mt-2 border-t border-th-border pt-2 px-2 text-xs font-medium uppercase tracking-wider text-th-text-muted">
-                    Pillars
+                    תחומים
                   </div>
                 )}
               </div>
@@ -1925,14 +1921,14 @@ ${exampleJson}`,
             </div>
             <div className="text-center">
               <div className="text-sm font-bold text-white">
-                Powered by Bright Data
+                מופעל על ידי Bright Data
               </div>
               <div className="mt-0.5 text-xs text-white/70">
-                Web data infrastructure for AI
+                תשתית נתוני רשת עבור AI
               </div>
             </div>
             <div className="flex items-center gap-1.5 rounded-lg bg-white/15 px-3 py-1.5 text-xs font-medium text-white transition-colors group-hover:bg-white/25">
-              Learn more
+              למידע נוסף
               <svg
                 width="14"
                 height="14"
@@ -1955,11 +1951,11 @@ ${exampleJson}`,
         <div className="border-t border-th-border px-4 py-2 text-center text-xs leading-relaxed text-th-text-muted">
           <div>
             {demoMode
-              ? "Read-only demo"
-              : `Local-first · ${workspaces.length} workspace${workspaces.length > 1 ? "s" : ""}`}
+              ? "הדגמה לקריאה בלבד"
+              : `מקומי תחילה · ${workspaces.length} סביבת עבודה`}
           </div>
           <div className="mt-1">
-            Built by{" "}
+            נבנה על ידי{" "}
             <a
               href="https://www.linkedin.com/in/daniel-shashko/"
               target="_blank"
@@ -1980,8 +1976,8 @@ ${exampleJson}`,
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-th-accent" />
             <span>
               {demoReason === "no-key"
-                ? "Sample data — add BRIGHT_DATA_KEY to your environment to track live AI engines"
-                : "Read-only demo — sample data, live API calls disabled"}
+                ? "נתונים לדוגמה — הוסף BRIGHT_DATA_KEY לסביבה שלך כדי לעקוב אחר מנועי AI חיים"
+                : "הדגמה לקריאה בלבד — נתונים לדוגמה, קריאות API חיות מושבתות"}
             </span>
           </div>
         )}
@@ -1991,7 +1987,7 @@ ${exampleJson}`,
           <button
             onClick={() => setSidebarOpen(!sidebarOpen)}
             className="rounded-md border border-th-border p-1.5 text-th-text-muted hover:bg-th-card-hover md:hidden"
-            aria-label="Toggle sidebar"
+            aria-label="הצג/הסתר סרגל צד"
           >
             <svg
               width="20"
@@ -2008,11 +2004,11 @@ ${exampleJson}`,
               <line x1="3" y1="18" x2="21" y2="18" />
             </svg>
           </button>
-          <h1 className="mr-auto text-sm font-semibold text-th-text md:text-base">
+          <h1 className="me-auto text-sm font-semibold text-th-text md:text-base">
             {tabMeta[activeTab].title}
           </h1>
           <label className="hidden text-sm text-th-text-muted sm:inline">
-            Models
+            מודלים
           </label>
           <div className="flex items-center gap-1 overflow-x-auto">
             {ALL_PROVIDERS.map((p) => {
@@ -2040,8 +2036,8 @@ ${exampleJson}`,
                   }`}
                   title={
                     active
-                      ? `Deselect ${PROVIDER_LABELS[p]}`
-                      : `Select ${PROVIDER_LABELS[p]}`
+                      ? `בטל בחירה ${PROVIDER_LABELS[p]}`
+                      : `בחר ${PROVIDER_LABELS[p]}`
                   }
                 >
                   {PROVIDER_LABELS[p]}
@@ -2058,22 +2054,22 @@ ${exampleJson}`,
                       : [...ALL_PROVIDERS],
                 }))
               }
-              className="ml-1 rounded-md border border-th-border px-2 py-1 text-xs text-th-text-muted hover:bg-th-card-hover hover:text-th-text-secondary"
+              className="ms-1 rounded-md border border-th-border px-2 py-1 text-xs text-th-text-muted hover:bg-th-card-hover hover:text-th-text-secondary"
               title={
                 state.activeProviders.length === ALL_PROVIDERS.length
-                  ? "Select only one"
-                  : "Select all models"
+                  ? "בחר רק אחד"
+                  : "בחר את כל המודלים"
               }
             >
               {state.activeProviders.length === ALL_PROVIDERS.length
                 ? "1"
-                : "All"}
+                : "הכל"}
             </button>
           </div>
 
           {/* Country / geo selector */}
           <label className="hidden text-sm text-th-text-muted lg:inline">
-            Region
+            אזור
           </label>
           <select
             value={state.country}
@@ -2081,7 +2077,7 @@ ${exampleJson}`,
               setState((prev) => ({ ...prev, country: e.target.value }))
             }
             className="rounded-md border border-th-border bg-th-card-alt px-2 py-1 text-xs text-th-text-secondary hover:bg-th-card-hover"
-            title="Country to run AI-visibility checks from (Bright Data geolocation)"
+            title="המדינה ממנה ירוצו בדיקות נראות ה-AI (מיקום גיאוגרפי של Bright Data)"
           >
             {COUNTRIES.map((c) => (
               <option key={c.code} value={c.code}>
@@ -2094,7 +2090,7 @@ ${exampleJson}`,
           <button
             onClick={cycleTheme}
             className="rounded-md border border-th-border px-2 py-1 text-sm hover:bg-th-card-hover transition-colors"
-            title={`Theme: ${theme}`}
+            title={`ערכת נושא: ${theme}`}
           >
             {themeIcon}
           </button>
@@ -2102,7 +2098,7 @@ ${exampleJson}`,
           <span
             className={`rounded-md px-2.5 py-1 text-xs ${busy ? "animate-pulse bg-th-accent-soft text-th-text-accent" : "bg-th-card-alt text-th-text-muted"}`}
           >
-            {message || "Ready"}
+            {message || "מוכן"}
           </span>
         </header>
 
@@ -2111,9 +2107,9 @@ ${exampleJson}`,
           {/* KPI strip — overview (Visibility Analytics) only */}
           {activeTab === "Visibility Analytics" && (
             <section className="mb-4 grid grid-cols-2 gap-2 sm:gap-3 lg:grid-cols-3 xl:grid-cols-6">
-              <KpiCard label="Total Runs" value={state.runs.length} />
+              <KpiCard label="סך הרצות" value={state.runs.length} />
               <KpiCard
-                label="Avg Visibility"
+                label="נראות ממוצעת"
                 value={
                   state.runs.length > 0
                     ? `${Math.round(state.runs.reduce((a, r) => a + (r.visibilityScore ?? 0), 0) / state.runs.length)}%`
@@ -2124,16 +2120,16 @@ ${exampleJson}`,
                 onInfoClick={() => setShowScoreInfo(!showScoreInfo)}
               />
               <KpiCard
-                label="Brand Mentioned"
+                label="מותג מוזכר"
                 value={
                   state.runs.filter((r) => (r.brandMentions?.length ?? 0) > 0)
                     .length
                 }
               />
-              <KpiCard label="Captured Sources" value={totalSources} />
-              <KpiCard label="Citation Opps" value={citationOpportunities} />
+              <KpiCard label="מקורות שנלכדו" value={totalSources} />
+              <KpiCard label="הזדמנויות אזכור" value={citationOpportunities} />
               <KpiCard
-                label="Latest Run"
+                label="הרצה אחרונה"
                 value={
                   latestRun
                     ? latestRun.createdAt.replace("T", " ").slice(0, 16)
@@ -2150,10 +2146,10 @@ ${exampleJson}`,
               <div className="mb-3 flex items-center gap-2">
                 <span className="text-base">📊</span>
                 <h3 className="text-sm font-semibold text-th-text">
-                  Top Movers
+                  השינויים הגדולים ביותר
                 </h3>
                 <span className="text-xs text-th-text-muted">
-                  Biggest visibility changes between runs
+                  שינויי הנראות הגדולים ביותר בין הרצות
                 </span>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -2200,7 +2196,7 @@ ${exampleJson}`,
             <section className="mb-4 rounded-xl border border-th-border bg-th-card p-4">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-base font-semibold text-th-text">
-                  How Visibility Scoring Works
+                  כיצד פועל ניקוד הנראות
                 </h3>
                 <button
                   onClick={() => setShowScoreInfo(false)}
@@ -2210,45 +2206,45 @@ ${exampleJson}`,
                 </button>
               </div>
               <p className="text-sm text-th-text-secondary mb-3">
-                The visibility score (0–100) measures how prominently your brand
-                appears in AI model responses. Each factor contributes points:
+                ציון הנראות (0–100) מודד עד כמה המותג שלך מופיע בצורה בולטת
+                בתשובות של מודלי AI. כל גורם תורם נקודות:
               </p>
               <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                 <ScoreFactorCard
                   emoji="🔍"
-                  label="Brand Mentioned"
+                  label="מותג מוזכר"
                   points="+30"
-                  desc="Your brand name or alias appears in the response"
+                  desc="שם המותג או כינוי שלו מופיע בתשובה"
                 />
                 <ScoreFactorCard
                   emoji="🏆"
-                  label="Prominent Position"
+                  label="מיקום בולט"
                   points="+20"
-                  desc="Brand is mentioned in the first 200 characters"
+                  desc="המותג מוזכר ב-200 התווים הראשונים"
                 />
                 <ScoreFactorCard
                   emoji="🔁"
-                  label="Multiple Mentions"
-                  points="+8 to +15"
-                  desc="Brand appears 2+ times (8pts) or 3+ times (15pts)"
+                  label="אזכורים מרובים"
+                  points="+8 עד +15"
+                  desc="המותג מופיע 2+ פעמים (8 נק׳) או 3+ פעמים (15 נק׳)"
                 />
                 <ScoreFactorCard
                   emoji="🔗"
-                  label="Website Cited"
+                  label="אתר מצוטט"
                   points="+20"
-                  desc="Your website URL appears in the cited sources"
+                  desc="כתובת האתר שלך מופיעה במקורות המצוטטים"
                 />
                 <ScoreFactorCard
                   emoji="👍"
-                  label="Positive Sentiment"
+                  label="סנטימנט חיובי"
                   points="+15"
-                  desc="Response uses positive language about your brand"
+                  desc="התשובה משתמשת בשפה חיובית על המותג שלך"
                 />
                 <ScoreFactorCard
                   emoji="😐"
-                  label="Neutral Sentiment"
+                  label="סנטימנט ניטרלי"
                   points="+5"
-                  desc="Response mentions brand in a neutral context"
+                  desc="התשובה מזכירה את המותג בהקשר ניטרלי"
                 />
               </div>
             </section>
@@ -2266,7 +2262,7 @@ ${exampleJson}`,
           </div>
           <section className="mt-3 rounded-lg border border-th-border bg-th-card px-4 py-3">
             <div className="text-xs uppercase tracking-wider font-medium text-th-text-muted">
-              What this tab does
+              מה עושה הלשונית הזו
             </div>
             <p className="mt-1 text-sm leading-relaxed text-th-text-secondary">
               {tabMeta[activeTab].details}
@@ -2295,7 +2291,7 @@ function ScoreFactorCard({
       <div className="flex items-center gap-2 mb-1">
         <span className="text-base">{emoji}</span>
         <span className="text-sm font-medium text-th-text">{label}</span>
-        <span className="ml-auto text-sm font-semibold text-th-accent">
+        <span className="ms-auto text-sm font-semibold text-th-accent">
           {points}
         </span>
       </div>
@@ -2328,7 +2324,7 @@ function KpiCard({
           <button
             onClick={onInfoClick}
             className="text-th-text-muted hover:text-th-text-accent text-xs"
-            title="How is this calculated?"
+            title="כיצד מחושב?"
           >
             ⓘ
           </button>

@@ -65,7 +65,7 @@ export function BattlecardsTab({
                 )}
                 <button
                   onClick={() => removeCompetitor(i)}
-                  className="ml-auto rounded p-1 text-xs text-th-text-muted hover:bg-th-danger-soft hover:text-th-danger"
+                  className="ms-auto rounded p-1 text-xs text-th-text-muted hover:bg-th-danger-soft hover:text-th-danger"
                   title="Remove"
                 >
                   ✕
@@ -140,7 +140,7 @@ export function BattlecardsTab({
               {/* Card header */}
               <button
                 onClick={() => setExpandedCard(isExpanded ? null : card.competitor)}
-                className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-th-card-hover transition-colors"
+                className="flex w-full items-center gap-3 px-4 py-3 text-start hover:bg-th-card-hover transition-colors"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-th-accent-soft">
                   <span className="text-sm font-bold text-th-text-accent">

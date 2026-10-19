@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Heebo, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
+const heebo = Heebo({
+  variable: "--font-heebo",
+  subsets: ["hebrew", "latin"],
   display: "swap",
 });
 
@@ -15,8 +15,9 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GEO/AEO Tracker",
-  description: "BYOK AEO/GEO intelligence dashboard with local-first persistence",
+  title: "מעקב נראות ב-AI",
+  description:
+    "לוח בקרה לניטור נראות המותג שלך בתשובות של מנועי AI (ChatGPT, Gemini, Perplexity) — עם שמירה מקומית",
 };
 
 /** Inline script to apply theme before first paint — prevents flash */
@@ -28,13 +29,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="he" dir="rtl" suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body
         suppressHydrationWarning
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
+        className={`${heebo.variable} ${jetbrainsMono.variable} antialiased`}
       >
         {children}
       </body>

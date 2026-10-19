@@ -127,13 +127,13 @@ export function PartnerDiscoveryTab({ partnerLeaderboard, brandWebsites = [] }: 
           <div className="flex rounded-md border border-th-border text-xs">
             <button
               onClick={() => setView("domain")}
-              className={`px-2.5 py-1 rounded-l-md transition-colors ${view === "domain" ? "bg-th-accent-soft text-th-text font-medium" : "text-th-text-muted hover:text-th-text-secondary"}`}
+              className={`px-2.5 py-1 rounded-s-md transition-colors ${view === "domain" ? "bg-th-accent-soft text-th-text font-medium" : "text-th-text-muted hover:text-th-text-secondary"}`}
             >
               Domains
             </button>
             <button
               onClick={() => setView("url")}
-              className={`px-2.5 py-1 rounded-r-md transition-colors ${view === "url" ? "bg-th-accent-soft text-th-text font-medium" : "text-th-text-muted hover:text-th-text-secondary"}`}
+              className={`px-2.5 py-1 rounded-e-md transition-colors ${view === "url" ? "bg-th-accent-soft text-th-text font-medium" : "text-th-text-muted hover:text-th-text-secondary"}`}
             >
               URLs
             </button>
@@ -166,17 +166,17 @@ export function PartnerDiscoveryTab({ partnerLeaderboard, brandWebsites = [] }: 
 
       {/* ── Search ── */}
       <div className="relative">
-        <svg className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-th-text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg className="pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-th-text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
         </svg>
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Filter by domain or URL…"
-          className="bd-input w-full rounded-md py-1.5 pl-9 pr-8 text-sm"
+          className="bd-input w-full rounded-md py-1.5 ps-9 pe-8 text-sm"
         />
         {search && (
-          <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-th-text-muted hover:text-th-text text-xs">✕</button>
+          <button onClick={() => setSearch("")} className="absolute end-3 top-1/2 -translate-y-1/2 text-th-text-muted hover:text-th-text text-xs">✕</button>
         )}
       </div>
 
@@ -201,7 +201,7 @@ export function PartnerDiscoveryTab({ partnerLeaderboard, brandWebsites = [] }: 
                       onClick={() =>
                         setExpandedDomains((prev) => ({ ...prev, [item.domain]: !prev[item.domain] }))
                       }
-                      className={`grid w-full grid-cols-[1fr_64px_64px_64px] gap-2 items-center px-4 py-2.5 text-left transition-colors hover:bg-th-card-hover ${isOpen ? "bg-th-card-hover/50" : idx % 2 === 0 ? "bg-th-card" : "bg-th-card-alt"}`}
+                      className={`grid w-full grid-cols-[1fr_64px_64px_64px] gap-2 items-center px-4 py-2.5 text-start transition-colors hover:bg-th-card-hover ${isOpen ? "bg-th-card-hover/50" : idx % 2 === 0 ? "bg-th-card" : "bg-th-card-alt"}`}
                     >
                       <div className="flex items-center gap-2 min-w-0">
                         <span className="text-xs text-th-text-muted">{isOpen ? "▾" : "▸"}</span>
@@ -223,7 +223,7 @@ export function PartnerDiscoveryTab({ partnerLeaderboard, brandWebsites = [] }: 
                         {[...new Set(item.urls)].map((url) => {
                           const entry = partnerLeaderboard.find((e) => e.url === url);
                           return (
-                            <div key={url} className="grid grid-cols-[1fr_64px_64px_64px] gap-2 items-center px-4 py-2 pl-10 border-b border-th-border/30 last:border-b-0">
+                            <div key={url} className="grid grid-cols-[1fr_64px_64px_64px] gap-2 items-center px-4 py-2 ps-10 border-b border-th-border/30 last:border-b-0">
                               <a
                                 href={url}
                                 target="_blank"
@@ -242,7 +242,7 @@ export function PartnerDiscoveryTab({ partnerLeaderboard, brandWebsites = [] }: 
 
                         {/* Prompt tags for expanded domain */}
                         {item.prompts.length > 0 && (
-                          <div className="px-4 py-2 pl-10 flex flex-wrap gap-1.5">
+                          <div className="px-4 py-2 ps-10 flex flex-wrap gap-1.5">
                             {item.prompts.slice(0, 5).map((p, i) => (
                               <span
                                 key={i}

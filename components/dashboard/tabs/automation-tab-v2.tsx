@@ -68,7 +68,7 @@ export function AutomationTab({
               <button
                 key={opt.value}
                 onClick={() => onIntervalChange(opt.value)}
-                className={`rounded-lg border p-3 text-left transition-colors ${
+                className={`rounded-lg border p-3 text-start transition-colors ${
                   active
                     ? "border-th-accent bg-th-accent-soft shadow-[inset_0_0_0_1px_var(--th-accent)]"
                     : "border-th-border bg-th-card hover:border-th-border-hover hover:bg-th-card-hover"
@@ -106,7 +106,7 @@ export function AutomationTab({
           <button
             onClick={onRunNow}
             disabled={busy}
-            className="ml-auto rounded-lg bg-th-accent px-3 py-1.5 text-xs font-medium text-th-text-inverse hover:brightness-110 transition disabled:opacity-50"
+            className="ms-auto rounded-lg bg-th-accent px-3 py-1.5 text-xs font-medium text-th-text-inverse hover:brightness-110 transition disabled:opacity-50"
           >
             {busy ? "Running…" : "Run Now"}
           </button>
@@ -149,7 +149,7 @@ export function AutomationTab({
             <h3 className="text-sm font-semibold text-th-text">
               Drift Alerts
               {activeAlerts.length > 0 && (
-                <span className="ml-2 rounded-full bg-th-danger px-2 py-0.5 text-xs font-bold text-white">
+                <span className="ms-2 rounded-full bg-th-danger px-2 py-0.5 text-xs font-bold text-white">
                   {activeAlerts.length}
                 </span>
               )}
@@ -184,7 +184,7 @@ export function AutomationTab({
             </p>
           </div>
         ) : (
-          <div className="max-h-[400px] space-y-2 overflow-auto pr-1">
+          <div className="max-h-[400px] space-y-2 overflow-auto pe-1">
             {displayAlerts.map((alert) => {
               const up = alert.delta > 0;
               return (

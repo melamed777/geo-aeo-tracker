@@ -158,7 +158,7 @@
   --color-th-warning-soft: var(--th-warning-soft);
   --color-th-danger: var(--th-danger);
   --color-th-danger-soft: var(--th-danger-soft);
-  --font-sans: var(--font-inter);
+  --font-sans: var(--font-heebo);
   --font-mono: var(--font-jetbrains-mono);
 }
 
@@ -168,7 +168,7 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans, 'Inter', system-ui, -apple-system, sans-serif);
+  font-family: var(--font-sans, 'Heebo', system-ui, -apple-system, sans-serif);
   margin: 0;
   min-height: 100vh;
   overflow: hidden;
@@ -235,4 +235,13 @@ body {
   outline: none;
   border-color: var(--th-accent);
   box-shadow: 0 0 0 3px var(--th-ring);
+}
+
+/* Active sidebar nav indicator — accent bar on the inline-start edge.
+   In LTR that's the left; in RTL (this app) it flips to the right. */
+.nav-active {
+  box-shadow: inset 3px 0 0 var(--th-accent);
+}
+[dir="rtl"] .nav-active {
+  box-shadow: inset -3px 0 0 var(--th-accent);
 }

@@ -273,7 +273,7 @@ export function DocumentationTab() {
                 setActiveSection(section.id);
                 setSearch("");
               }}
-              className={`flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-left text-sm transition-colors ${
+              className={`flex w-full items-center gap-2 rounded-lg px-2.5 py-1.5 text-start text-sm transition-colors ${
                 activeSection === section.id
                   ? "bg-th-accent-soft text-th-text-accent font-medium"
                   : "text-th-text-secondary hover:bg-th-card-hover hover:text-th-text"
@@ -302,7 +302,7 @@ export function DocumentationTab() {
                   return (
                     <div
                       key={i}
-                      className="ml-4 flex items-start gap-2 text-sm text-th-text-secondary leading-relaxed"
+                      className="ms-4 flex items-start gap-2 text-sm text-th-text-secondary leading-relaxed"
                     >
                       <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-th-accent" />
                       <span>{line.slice(2)}</span>

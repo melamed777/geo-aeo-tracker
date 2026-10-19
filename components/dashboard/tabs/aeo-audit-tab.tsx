@@ -56,7 +56,7 @@ function CheckRow({ check }: { check: AuditCheck }) {
     <div className="rounded-lg border border-th-border bg-th-card-alt">
       <button
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center gap-2 px-4 py-2.5 text-left text-sm hover:bg-th-card-hover transition-colors"
+        className="flex w-full items-center gap-2 px-4 py-2.5 text-start text-sm hover:bg-th-card-hover transition-colors"
       >
         <span className={check.pass ? "text-th-success" : "text-th-danger"}>
           {check.pass ? "✓" : "✗"}

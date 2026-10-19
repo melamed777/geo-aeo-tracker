@@ -58,30 +58,30 @@ export function PromptHubTab({
       <div className="rounded-xl border border-th-border bg-th-card-alt p-4">
         <div className="mb-2 flex items-center justify-between">
           <div className="text-sm font-medium uppercase tracking-wider text-th-text-muted">
-            Tracking Prompt Library
+            ספריית שאילתות מעקב
           </div>
           {customPrompts.length > 0 && (
             <button
               disabled={busy}
               onClick={onBatchRunAll}
               className="bd-btn-primary rounded-lg px-3 py-1.5 text-sm disabled:opacity-60"
-              title={`Run all ${customPrompts.length} prompts × ${activeProviderCount} model${activeProviderCount > 1 ? "s" : ""}`}
+              title={`הרץ את כל ${customPrompts.length} השאילתות × ${activeProviderCount} מודלים`}
             >
-              ▶ Run All ({customPrompts.length} × {activeProviderCount})
+              ▶ הרץ הכל ({customPrompts.length} × {activeProviderCount})
             </button>
           )}
         </div>
         <p className="mb-3 text-sm text-th-text-secondary">
-          Add the exact prompts you want to track over time. Use <span className="font-semibold">{"{brand}"}</span> to inject your brand name.
+          הוסף את השאילתות המדויקות שברצונך לעקוב אחריהן לאורך זמן. השתמש ב-<span className="font-semibold">{"{brand}"}</span> כדי להזריק את שם המותג שלך.
           {activeProviderCount > 1 && (
-            <span className="ml-1 text-th-text-accent">· Runs across {activeProviderCount} selected models in parallel.</span>
+            <span className="ms-1 text-th-text-accent">· רצה על פני {activeProviderCount} מודלים נבחרים במקביל.</span>
           )}
         </p>
 
         {/* Tag filter bar */}
         {allTags.length > 0 && (
           <div className="mb-3 flex flex-wrap items-center gap-1.5">
-            <span className="text-xs font-medium text-th-text-muted">Filter:</span>
+            <span className="text-xs font-medium text-th-text-muted">סינון:</span>
             <button
               onClick={() => setFilterTag(null)}
               className={`rounded-full px-2.5 py-0.5 text-xs font-medium transition-colors ${
@@ -90,7 +90,7 @@ export function PromptHubTab({
                   : "bd-chip hover:bg-th-border"
               }`}
             >
-              All ({customPrompts.length})
+              הכל ({customPrompts.length})
             </button>
             {allTags.map((tag) => (
               <button
@@ -118,7 +118,7 @@ export function PromptHubTab({
                 setNewPrompt("");
               }
             }}
-            placeholder="e.g. Best alternatives to {brand} for B2B SEO analytics"
+            placeholder="למשל: החלופות הטובות ביותר ל-{brand} לניתוח SEO ל-B2B"
             className="bd-input w-full rounded-lg px-3 py-2 text-sm"
           />
           <button
@@ -128,14 +128,14 @@ export function PromptHubTab({
             }}
             className="bd-btn-primary rounded-lg px-4 py-2 text-sm"
           >
-            Add
+            הוסף
           </button>
         </div>
 
-        <ul className="max-h-[400px] space-y-2 overflow-auto pr-1 text-sm">
+        <ul className="max-h-[400px] space-y-2 overflow-auto pe-1 text-sm">
           {filteredPrompts.length === 0 && (
             <li className="text-th-text-secondary">
-              {customPrompts.length === 0 ? "No custom prompts added yet." : "No prompts match this filter."}
+              {customPrompts.length === 0 ? "עדיין לא נוספו שאילתות מותאמות." : "אין שאילתות התואמות לסינון זה."}
             </li>
           )}
           {filteredPrompts.map((item, index) => (
@@ -155,7 +155,7 @@ export function PromptHubTab({
                     {tag}
                     <button
                       onClick={() => handleRemoveTag(item.text, item.tags, tag)}
-                      className="ml-0.5 text-th-accent/60 hover:text-th-accent"
+                      className="ms-0.5 text-th-accent/60 hover:text-th-accent"
                     >
                       ×
                     </button>
@@ -170,7 +170,7 @@ export function PromptHubTab({
                     onKeyDown={(e) => {
                       if (e.key === "Enter") handleAddTag(item.text, item.tags);
                     }}
-                    placeholder="+ tag"
+                    placeholder="+ תגית"
                     className="w-16 rounded-md border border-th-border bg-transparent px-1.5 py-0.5 text-xs focus:w-24 focus:outline-none focus:ring-1 focus:ring-th-accent transition-all"
                   />
                 </div>
@@ -181,23 +181,23 @@ export function PromptHubTab({
                   onClick={() => onRunPrompt(interpolateBrand(item.text))}
                   className="bd-btn-primary rounded-md px-3 py-1.5 text-xs"
                 >
-                  Run
+                  הרץ
                 </button>
                 <button
                   onClick={() => onRemoveCustomPrompt(item.text)}
                   className="bd-chip rounded-md px-3 py-1.5 text-xs"
                 >
-                  Remove
+                  הסר
                 </button>
                 <button
                   onClick={() => {
-                    if (window.confirm("Remove this prompt AND delete all its collected responses?")) {
+                    if (window.confirm("להסיר את השאילתה הזו ולמחוק גם את כל התשובות שנאספו ממנה?")) {
                       onRemoveCustomPrompt(item.text, true);
                     }
                   }}
                   className="bd-chip rounded-md px-3 py-1.5 text-xs text-th-danger hover:bg-th-danger-soft"
                 >
-                  Remove + Delete Data
+                  הסר + מחק נתונים
                 </button>
               </div>
             </li>

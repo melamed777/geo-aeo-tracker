@@ -182,7 +182,7 @@ function ModelResponseCard({
       {/* Header */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="flex w-full items-center gap-3 px-4 py-3 text-left hover:bg-th-card-hover"
+        className="flex w-full items-center gap-3 px-4 py-3 text-start hover:bg-th-card-hover"
       >
         <ProviderBadge provider={run.provider} />
         <div className="flex flex-1 items-center gap-3">
@@ -217,7 +217,7 @@ function ModelResponseCard({
             e.stopPropagation();
             if (window.confirm("Delete this response? This cannot be undone.")) onDelete();
           }}
-          className="absolute right-2 top-2 rounded p-1 text-th-text-muted opacity-0 transition-opacity hover:bg-th-danger-soft hover:text-th-danger group-hover:opacity-100"
+          className="absolute end-2 top-2 rounded p-1 text-th-text-muted opacity-0 transition-opacity hover:bg-th-danger-soft hover:text-th-danger group-hover:opacity-100"
           title="Delete this response"
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg>
@@ -260,7 +260,7 @@ function ModelResponseCard({
             </div>
           )}
 
-          <div className="max-h-[400px] overflow-auto whitespace-pre-wrap break-words pr-1 text-sm leading-7 text-th-text">
+          <div className="max-h-[400px] overflow-auto whitespace-pre-wrap break-words pe-1 text-sm leading-7 text-th-text">
             {display ? (
               <HighlightedText
                 text={display}
@@ -491,7 +491,7 @@ export function ReputationSourcesTab({
           <option value="score">Sort: Score</option>
         </select>
 
-        <span className="ml-auto text-xs text-th-text-muted">
+        <span className="ms-auto text-xs text-th-text-muted">
           <span className="font-semibold text-th-text">{filteredRuns.length}</span> responses across{" "}
           <span className="font-semibold text-th-text">{promptGroups.length}</span> prompt{promptGroups.length > 1 ? "s" : ""}
         </span>
@@ -523,7 +523,7 @@ export function ReputationSourcesTab({
                 onClick={() =>
                   setExpandedGroups((prev) => ({ ...prev, [prompt]: !open }))
                 }
-                className="flex w-full items-start gap-3 px-4 py-3 text-left hover:bg-th-card-hover transition-colors rounded-t-xl"
+                className="flex w-full items-start gap-3 px-4 py-3 text-start hover:bg-th-card-hover transition-colors rounded-t-xl"
               >
                 <span className="mt-0.5 text-xs text-th-text-muted">{open ? "▼" : "▶"}</span>
                 <div className="min-w-0 flex-1">
@@ -597,7 +597,7 @@ function InsightMini({
       <div className="text-xs uppercase tracking-wider text-th-text-muted">{label}</div>
       <div className={`mt-0.5 text-lg font-bold ${color ?? "text-th-text"}`}>
         {value}
-        {sub && <span className="ml-1 text-xs font-normal text-th-text-muted">{sub}</span>}
+        {sub && <span className="ms-1 text-xs font-normal text-th-text-muted">{sub}</span>}
       </div>
     </div>
   );

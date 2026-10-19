@@ -66,7 +66,7 @@ export function FanOutTab({
             Generate fan-out prompts to populate this queue.
           </p>
         )}
-        <ul className="max-h-[420px] space-y-2 overflow-auto pr-1 text-sm">
+        <ul className="max-h-[420px] space-y-2 overflow-auto pe-1 text-sm">
           {fanoutPrompts.map((item, index) => (
             <li
               key={`${item}-${index}`}

@@ -1,11 +1,11 @@
+import { t } from "@/lib/i18n/he";
+
 export type Provider =
   | "chatgpt"
   | "perplexity"
   | "copilot"
   | "gemini"
-  | "google_ai";
-
-export type ScrapeRun = {
+  | "google_ai";export type ScrapeRun = {
   provider: Provider;
   prompt: string;
   answer: string;
@@ -96,20 +96,20 @@ export const PROVIDER_LABELS: Record<Provider, string> = {
 
 /** Countries available for geo-scoped AI-visibility tracking (Bright Data geolocation, 2-letter codes) */
 export const COUNTRIES: { code: string; label: string }[] = [
-  { code: "US", label: "United States" },
-  { code: "GB", label: "United Kingdom" },
-  { code: "CA", label: "Canada" },
-  { code: "AU", label: "Australia" },
-  { code: "DE", label: "Germany" },
-  { code: "FR", label: "France" },
-  { code: "ES", label: "Spain" },
-  { code: "IT", label: "Italy" },
-  { code: "NL", label: "Netherlands" },
-  { code: "BR", label: "Brazil" },
-  { code: "IN", label: "India" },
-  { code: "JP", label: "Japan" },
-  { code: "MX", label: "Mexico" },
-  { code: "IL", label: "Israel" },
+  { code: "US", label: t("country.US") },
+  { code: "GB", label: t("country.GB") },
+  { code: "CA", label: t("country.CA") },
+  { code: "AU", label: t("country.AU") },
+  { code: "DE", label: t("country.DE") },
+  { code: "FR", label: t("country.FR") },
+  { code: "ES", label: t("country.ES") },
+  { code: "IT", label: t("country.IT") },
+  { code: "NL", label: t("country.NL") },
+  { code: "BR", label: t("country.BR") },
+  { code: "IN", label: t("country.IN") },
+  { code: "JP", label: t("country.JP") },
+  { code: "MX", label: t("country.MX") },
+  { code: "IL", label: t("country.IL") },
 ];
 
 export const COUNTRY_LABELS: Record<string, string> = Object.fromEntries(
@@ -136,10 +136,10 @@ export const SCHEDULE_OPTIONS: {
   label: string;
   desc: string;
 }[] = [
-  { value: 3600000, label: "Every Hour", desc: "Run once per hour" },
-  { value: 21600000, label: "Every 6 Hours", desc: "Run 4× per day" },
-  { value: 43200000, label: "Every 12 Hours", desc: "Run 2× per day" },
-  { value: 86400000, label: "Daily", desc: "Once per day" },
+  { value: 3600000, label: t("schedule.hourly.label"), desc: t("schedule.hourly.desc") },
+  { value: 21600000, label: t("schedule.6h.label"), desc: t("schedule.6h.desc") },
+  { value: 43200000, label: t("schedule.12h.label"), desc: t("schedule.12h.desc") },
+  { value: 86400000, label: t("schedule.daily.label"), desc: t("schedule.daily.desc") },
 ];
 
 /** Computed delta for a prompt+provider pair between runs */

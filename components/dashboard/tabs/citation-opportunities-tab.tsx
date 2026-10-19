@@ -210,13 +210,13 @@ export function CitationOpportunitiesTab({ runs, brandWebsites = [] }: CitationO
           <div className="flex rounded-md border border-th-border text-xs">
             <button
               onClick={() => setView("domain")}
-              className={`px-2.5 py-1 rounded-l-md transition-colors ${view === "domain" ? "bg-th-accent-soft text-th-text font-medium" : "text-th-text-muted hover:text-th-text-secondary"}`}
+              className={`px-2.5 py-1 rounded-s-md transition-colors ${view === "domain" ? "bg-th-accent-soft text-th-text font-medium" : "text-th-text-muted hover:text-th-text-secondary"}`}
             >
               Domains
             </button>
             <button
               onClick={() => setView("url")}
-              className={`px-2.5 py-1 rounded-r-md transition-colors ${view === "url" ? "bg-th-accent-soft text-th-text font-medium" : "text-th-text-muted hover:text-th-text-secondary"}`}
+              className={`px-2.5 py-1 rounded-e-md transition-colors ${view === "url" ? "bg-th-accent-soft text-th-text font-medium" : "text-th-text-muted hover:text-th-text-secondary"}`}
             >
               URLs
             </button>
@@ -258,17 +258,17 @@ export function CitationOpportunitiesTab({ runs, brandWebsites = [] }: CitationO
 
       {/* ── Search ── */}
       <div className="relative">
-        <svg className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-th-text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <svg className="pointer-events-none absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-th-text-muted" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" />
         </svg>
         <input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Filter by domain, URL, or competitor…"
-          className="bd-input w-full rounded-md py-1.5 pl-9 pr-8 text-sm"
+          className="bd-input w-full rounded-md py-1.5 ps-9 pe-8 text-sm"
         />
         {search && (
-          <button onClick={() => setSearch("")} className="absolute right-3 top-1/2 -translate-y-1/2 text-th-text-muted hover:text-th-text text-xs">✕</button>
+          <button onClick={() => setSearch("")} className="absolute end-3 top-1/2 -translate-y-1/2 text-th-text-muted hover:text-th-text text-xs">✕</button>
         )}
       </div>
 
@@ -301,7 +301,7 @@ export function CitationOpportunitiesTab({ runs, brandWebsites = [] }: CitationO
                   <div key={item.domain}>
                     <button
                       onClick={() => setExpandedOpp((prev) => ({ ...prev, [item.domain]: !prev[item.domain] }))}
-                      className={`grid w-full grid-cols-[1fr_72px_72px_72px_64px] gap-2 items-center px-4 py-2.5 text-left transition-colors hover:bg-th-card-hover ${isOpen ? "bg-th-card-hover/50" : idx % 2 === 0 ? "bg-th-card" : "bg-th-card-alt"}`}
+                      className={`grid w-full grid-cols-[1fr_72px_72px_72px_64px] gap-2 items-center px-4 py-2.5 text-start transition-colors hover:bg-th-card-hover ${isOpen ? "bg-th-card-hover/50" : idx % 2 === 0 ? "bg-th-card" : "bg-th-card-alt"}`}
                     >
                       <div className="flex items-center gap-2 min-w-0">
                         <span className="text-xs text-th-text-muted">{isOpen ? "▾" : "▸"}</span>
@@ -324,7 +324,7 @@ export function CitationOpportunitiesTab({ runs, brandWebsites = [] }: CitationO
                       <div className="border-t border-th-border/40 bg-th-card-alt/50">
                         {/* Competitors row */}
                         {item.competitors.length > 0 && (
-                          <div className="px-4 py-2 pl-10 flex items-center gap-2 border-b border-th-border/30">
+                          <div className="px-4 py-2 ps-10 flex items-center gap-2 border-b border-th-border/30">
                             <span className="text-xs font-medium text-th-text-muted">Competitors cited:</span>
                             <div className="flex flex-wrap gap-1">
                               {item.competitors.map((c) => (
@@ -336,7 +336,7 @@ export function CitationOpportunitiesTab({ runs, brandWebsites = [] }: CitationO
 
                         {/* Pages */}
                         {item.urls.map((opp) => (
-                          <div key={opp.url} className="grid grid-cols-[1fr_72px_72px_72px_64px] gap-2 items-center px-4 py-2 pl-10 border-b border-th-border/30 last:border-b-0">
+                          <div key={opp.url} className="grid grid-cols-[1fr_72px_72px_72px_64px] gap-2 items-center px-4 py-2 ps-10 border-b border-th-border/30 last:border-b-0">
                             <div className="flex items-center gap-2 min-w-0">
                               <a href={opp.url} target="_blank" rel="noreferrer" className="text-sm text-th-text-accent hover:underline truncate min-w-0" title={opp.url}>
                                 {opp.url.replace(/^https?:\/\/(www\.)?/, "")}
@@ -356,7 +356,7 @@ export function CitationOpportunitiesTab({ runs, brandWebsites = [] }: CitationO
                         ))}
 
                         {/* AI models + prompts */}
-                        <div className="px-4 py-2 pl-10 flex flex-wrap items-center gap-2">
+                        <div className="px-4 py-2 ps-10 flex flex-wrap items-center gap-2">
                           {[...new Set(item.urls.flatMap((u) => u.providers))].map((p) => (
                             <span key={p} className="rounded bg-th-card px-1.5 py-0.5 text-xs text-th-text-muted border border-th-border">{PROVIDER_LABELS[p]}</span>
                           ))}
@@ -372,7 +372,7 @@ export function CitationOpportunitiesTab({ runs, brandWebsites = [] }: CitationO
                         </div>
 
                         {/* Outreach hint */}
-                        <div className="px-4 py-2 pl-10 border-t border-th-border/30">
+                        <div className="px-4 py-2 ps-10 border-t border-th-border/30">
                           <p className="text-xs text-th-text-muted leading-relaxed">
                             <span className="font-medium text-th-text-secondary">Outreach tip:</span>{" "}
                             {item.competitors.length > 0

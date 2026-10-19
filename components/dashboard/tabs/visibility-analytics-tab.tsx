@@ -24,6 +24,13 @@ const PROVIDER_COLORS: Record<string, string> = {
   google_ai: "#ea8600",
 };
 
+const SENTIMENT_LABELS: Record<string, string> = {
+  positive: "חיובי",
+  neutral: "ניטרלי",
+  negative: "שלילי",
+  "not-mentioned": "לא מוזכר",
+};
+
 type VisibilityAnalyticsTabProps = {
   data: Array<{ day: string; visibility: number }>;
   runs: ScrapeRun[];
@@ -120,11 +127,11 @@ export function VisibilityAnalyticsTab({
       {/* Visibility by AI engine */}
       <div className="rounded-lg border border-th-border bg-th-card p-4">
         <div className="mb-3 text-xs font-medium uppercase tracking-wider text-th-text-muted">
-          Visibility by AI engine
+          נראות לפי מנוע AI
         </div>
         {byProvider.length === 0 ? (
           <p className="text-sm text-th-text-muted">
-            Run prompts to see how each AI engine ranks your brand.
+            הרץ שאילתות כדי לראות כיצד כל מנוע AI מדרג את המותג שלך.
           </p>
         ) : (
           <div className="space-y-2.5">
@@ -139,14 +146,14 @@ export function VisibilityAnalyticsTab({
                 </span>
                 <div className="relative h-2.5 flex-1 overflow-hidden rounded-full bg-th-card-alt">
                   <div
-                    className="absolute inset-y-0 left-0 rounded-full transition-all"
+                    className="absolute inset-y-0 start-0 rounded-full transition-all"
                     style={{
                       width: `${avg}%`,
                       backgroundColor: PROVIDER_COLORS[provider],
                     }}
                   />
                 </div>
-                <span className="w-10 shrink-0 text-right text-sm font-semibold tabular-nums text-th-text">
+                <span className="w-10 shrink-0 text-end text-sm font-semibold tabular-nums text-th-text">
                   {avg}%
                 </span>
               </div>
@@ -159,7 +166,7 @@ export function VisibilityAnalyticsTab({
       {byCountry.length > 0 && (
         <div className="rounded-lg border border-th-border bg-th-card p-4">
           <div className="mb-3 text-xs font-medium uppercase tracking-wider text-th-text-muted">
-            Visibility by country
+            נראות לפי מדינה
           </div>
           <div className="space-y-2.5">
             {byCountry.map(({ code, avg }) => (
@@ -169,11 +176,11 @@ export function VisibilityAnalyticsTab({
                 </span>
                 <div className="relative h-2.5 flex-1 overflow-hidden rounded-full bg-th-card-alt">
                   <div
-                    className="absolute inset-y-0 left-0 rounded-full bg-th-accent transition-all"
+                    className="absolute inset-y-0 start-0 rounded-full bg-th-accent transition-all"
                     style={{ width: `${avg}%` }}
                   />
                 </div>
-                <span className="w-10 shrink-0 text-right text-sm font-semibold tabular-nums text-th-text">
+                <span className="w-10 shrink-0 text-end text-sm font-semibold tabular-nums text-th-text">
                   {avg}%
                 </span>
               </div>
@@ -198,7 +205,7 @@ export function VisibilityAnalyticsTab({
                 className="rounded-lg border border-th-border bg-th-card px-3 py-2.5"
               >
                 <div className="text-xs uppercase tracking-wider text-th-text-muted">
-                  {s}
+                  {SENTIMENT_LABELS[s]}
                 </div>
                 <div className={`mt-0.5 text-xl font-bold ${colors[s]}`}>
                   {sentimentCounts[s] || 0}
@@ -212,10 +219,13 @@ export function VisibilityAnalyticsTab({
       {/* Chart */}
       {data.length === 0 ? (
         <div className="rounded-lg border border-th-border bg-th-card-alt p-8 text-center text-sm text-th-text-secondary">
-          No trend data yet. Run prompts to populate visibility trend.
+          עדיין אין נתוני מגמה. הרץ שאילתות כדי למלא את מגמת הנראות.
         </div>
       ) : (
-        <div className="h-80 w-full rounded-lg border border-th-border bg-th-card-alt p-2">
+        <div
+          dir="ltr"
+          className="h-80 w-full rounded-lg border border-th-border bg-th-card-alt p-2"
+        >
           <ResponsiveContainer>
             <LineChart data={data}>
               <CartesianGrid
@@ -241,7 +251,7 @@ export function VisibilityAnalyticsTab({
               <Line
                 type="monotone"
                 dataKey="visibility"
-                name="Avg Visibility %"
+                name="נראות ממוצעת %"
                 stroke="var(--th-accent)"
                 strokeWidth={2.5}
                 dot={{ r: 3, fill: "var(--th-accent)" }}
@@ -258,14 +268,14 @@ export function VisibilityAnalyticsTab({
           disabled={runs.length === 0}
           className="bd-chip rounded-lg px-4 py-2 text-sm disabled:opacity-40"
         >
-          Export All Runs (CSV)
+          ייצוא כל ההרצות (CSV)
         </button>
         <button
           onClick={exportTrendCsv}
           disabled={data.length === 0}
           className="bd-chip rounded-lg px-4 py-2 text-sm disabled:opacity-40"
         >
-          Export Trend Data (CSV)
+          ייצוא נתוני מגמה (CSV)
         </button>
       </div>
     </div>

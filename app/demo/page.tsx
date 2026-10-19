@@ -1,8 +1,8 @@
 import { SovereignDashboard } from "@/components/sovereign-dashboard";
 
 export const metadata = {
-  title: "GEO/AEO Tracker — Demo",
-  description: "Read-only demo of the GEO/AEO Tracker. Explore AI visibility tracking, competitor battlecards, citation analysis, and more.",
+  title: "מעקב נראות ב-AI — הדגמה",
+  description: "הדגמה לקריאה בלבד של כלי מעקב הנראות ב-AI. חקור מעקב נראות, כרטיסי מתחרים, ניתוח אזכורים ועוד.",
 };
 
 export default function DemoPage() {
